@@ -317,6 +317,41 @@
       z-index: 2;
       transition: background 0.3s, transform 0.3s;
     }
+    /* Mobile screens (max-width: 600px) */
+@media (max-width: 600px) {
+  .timeline-year {
+    text-align: center;
+    line-height: 50px;
+    left: -50px;           /* कमी margin left */
+    width: 60px;           /* circle size कमी */
+    height: 60px;
+    font-size: 1rem;       /* font लहान */
+  }
+  .timeline-content i,
+  .timeline-year i {
+    display: none !important;
+  }
+}
+
+/* Tablet screens (601px - 900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .timeline-year {
+    left: -65px; 
+    width: 70px;
+    height: 70px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Large screens (above 901px) */
+@media (min-width: 901px) {
+  .timeline-year {
+    left: -80px; 
+    width: 80px;
+    height: 80px;
+    font-size: 1.2rem;
+  }
+}
     
     .timeline-year:hover {
       background: var(--accent-orange);
