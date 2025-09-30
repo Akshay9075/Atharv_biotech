@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atharv Seed - Premium Onion Seeds</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Animate.css for animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    :root {
+      --primary-green: #2e7d32;
+      --secondary-green: #4CAF50;
+      --accent-orange: #ff9800;
+      --light-bg: #f8f9fa;
+      --dark-text: #333;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: var(--dark-text);
+      padding-top: 75px;
+      overflow-x: hidden;
+    }
+     
+    /* Navbar */
+    .navbar {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      background-color: white;
+      transition: all 0.3s ease;
+      height: 75px;
+    }
+    
+    .navbar.scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      height: 65px;
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      color: var(--primary-green);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .navbar-brand img {
+      height: 50px;
+      width: auto;
+      transition: transform 0.3s ease, height 0.3s ease;
+    }
+    
+    .navbar.scrolled .navbar-brand img {
+      height: 42px;
+      transform: translateY(-1px);
+    }
+    
+    .navbar-brand span {
+      color: var(--accent-orange);
+    }
+    
+    .nav-link {
+      font-weight: 600;
+      color: var(--primary-green);
+      transition: color 0.3s;
+      position: relative;
+      padding-bottom: 6px;
+    }
+    
+    .nav-link:hover {
+      color: var(--accent-orange);
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--accent-orange);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+    
+    /* Sliding nav indicator */
+    .nav-indicator {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      width: 0;
+      background: linear-gradient(90deg, var(--primary-green), var(--accent-orange));
+      border-radius: 2px;
+      transition: transform 0.3s ease, width 0.3s ease, left 0.3s ease;
+      pointer-events: none;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                  url('images/hero.png');
+      background-size: cover;
+      background-position: center;
+      padding: 150px 0;
+      color: white;
+      border-radius: 0 0 20px 20px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(46, 125, 50, 0.3), rgba(255, 152, 0, 0.3));
+      z-index: 1;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero h1 {
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      font-size: 3.5rem;
+    }
+    
+    .hindi-tagline {
+      color: var(--accent-orange);
+      font-weight: 600;
+      display: block;
+      margin-top: 10px;
+      font-size: 1.8rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    
+    .btn {
+      background-color: var(--accent-orange);
+      border: solid 2px var(--accent-orange);
+      padding: 12px 30px;
+      font-weight: 600;
+      color: white;
+      transition: all 0.3s;
+      border-radius: 50px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.2);
+      transition: all 0.4s;
+      z-index: -1;
+    }
+    
+    .btn:hover {
+      background-color: #e68900;
+      border-color: #e68900;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    .btn:hover::before {
+      left: 100%;
+    }
+    
+    /* Products Section */
+    .products {
+      padding: 60px 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      color: var(--primary-green);
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background-color: var(--accent-orange);
+      border-radius: 2px;
+    }
+    
+    .product-card {
+      border: none;
+      border-radius: 70px 15px 70px 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin-bottom: 30px;
+      height: 100%;
+      box-shadow: 0 15px 40px rgba(15,0,0,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(46, 125, 50, 0.1), rgba(255, 152, 0, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 1;
+    }
+    
+    .product-card:hover::before {
+      opacity: 1;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(15,0,0,0.15);
+      border: 2px solid rgba(255, 152, 0, 1.0); 
+    }
+    
+    .product-img {
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    
+    .product-card:hover .product-img {
+      transform: scale(1.05);
+    }
+    
+    .card-body {
+      padding: 25px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .card-title {
+      color: var(--primary-green);
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    
+    /* Features Section */
+    .features {
+      padding: 80px 0;
+      background-color: var(--light-bg);
+    }
+    
+    .features {
+      padding: 80px 0;
+      position: relative;
+      background-image:
+        radial-gradient(circle at 10% 10%, rgba(76, 175, 80, 0.08) 0, rgba(76,175,80,0.08) 120px, transparent 121px),
+        radial-gradient(circle at 90% 20%, rgba(255, 152, 0, 0.06) 0, rgba(255,152,0,0.06) 140px, transparent 141px),
+        radial-gradient(circle at 20% 90%, rgba(46, 125, 50, 0.05) 0, rgba(46,125,50,0.05) 160px, transparent 161px),
+        url("");
+      background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+      background-size: auto, auto, auto, cover;
+      background-position: 10% 10%, 90% 20%, 20% 90%, center;
+    }
+
+    /* White feature boxes */
+    .feature-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      color: #333;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      height: 100%;
+    }
+    
+    .feature-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    /* feature icons green */
+    .feature-box .feature-icon i {
+      color: #28a745;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      transition: transform 0.3s;
+    }
+    
+    .feature-box:hover .feature-icon i {
+      transform: scale(1.2);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--primary-green);
+      color: white;
+      padding: 60px 0 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+    }
+    
+    footer h5 {
+      font-weight: 700;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    footer h5::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: var(--accent-orange);
+      transition: width 0.3s;
+    }
+    
+    footer h5:hover::after {
+      width: 80px;
+    }
+    
+    footer a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+    
+    footer a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+    
+    footer a::before {
+      content: '→';
+      position: absolute;
+      left: -15px;
+      opacity: 0;
+      transition: all 0.3s;
+    }
+    
+    footer a:hover::before {
+      opacity: 1;
+      left: -10px;
+    }
+    
+    /* Mission Section - Redesigned */
+    .mission {
+      padding: 80px 0;
+      margin: 0;                
+      position: relative;
+      overflow: hidden;
+      background-image:
+        radial-gradient(circle at 10% 10%, rgba(76, 175, 80, 0.08) 0, rgba(76,175,80,0.08) 120px, transparent 121px),
+        radial-gradient(circle at 90% 20%, rgba(255, 152, 0, 0.06) 0, rgba(255,152,0,0.06) 140px, transparent 141px),
+        radial-gradient(circle at 20% 90%, rgba(46, 125, 50, 0.05) 0, rgba(46,125,50,0.05) 160px, transparent 161px),
+        url("");
+      background-repeat: no-repeat;
+      background-size: auto, auto, auto, cover;
+      background-position: 10% 10%, 90% 20%, 20% 90%, top;
+    }
+
+    /* Dark overlay for depth */
+    .mission::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.55); /* Darkness control */
+      z-index: 1;
+    }
+
+    /* Container to stay above overlay */
+    .mission-container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .mission-bg-pattern {
+      display: none;
+    }
+
+    /* Mission content box with light transparency */
+    .mission-content {
+      background: rgba(255, 255, 255, 0.8); /* हलका transparent white */
+      border-radius: 20px;
+      box-shadow: 0 15px 50px rgba(46, 125, 50, 0.1);
+      padding: 50px;
+      position: relative;
+      color: #333;
+      transition: transform 0.3s;
+    }
+    
+    .mission-content:hover {
+      transform: translateY(-5px);
+    }
+
+    .mission-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--primary-green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(46, 125, 50, 0.2);
+      animation: pulse 2s infinite;
+    }
+    
+    .mission-icon i {
+      font-size: 36px;
+      color: white;
+    }
+    
+    .mission h2 {
+      color: var(--primary-green);
+      font-weight: 700;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .mission h2:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background-color: var(--accent-orange);
+      border-radius: 2px;
+      transition: width 0.3s;
+    }
+    
+    .mission h2:hover:after {
+      width: 120px;
+    }
+    
+    .mission p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 30px;
+    }
+    
+    .mission-image {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      height: 100%;
+      min-height: 300px;
+      transition: transform 0.3s;
+    }
+    
+    .mission-image:hover {
+      transform: scale(1.02);
+    }
+    
+    .mission-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: transparent;
+      transition: transform 0.5s;
+    }
+    
+    .mission-image:hover img {
+      transform: scale(1.1);
+    }
+    
+    .mission-image:before {
+      content: '';
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      bottom: -15px;
+      left: -15px;
+      border: 2px solid var(--accent-orange);
+      border-radius: 20px;
+      opacity: 0.3;
+      z-index: 1;
+      background: transparent;
+    }
+    
+    .mission-values {
+      margin-top: 40px;
+    }
+    
+    .value-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      transition: transform 0.3s;
+    }
+    
+    .value-item:hover {
+      transform: translateX(10px);
+    }
+    
+    .value-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(46, 125, 50, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      flex-shrink: 0;
+      transition: all 0.3s;
+    }
+    
+    .value-item:hover .value-icon {
+      background: var(--primary-green);
+      transform: scale(1.1);
+    }
+    
+    .value-item:hover .value-icon i {
+      color: white;
+    }
+    
+    .value-icon i {
+      color: var(--primary-green);
+      font-size: 20px;
+      transition: all 0.3s;
+    }
+    
+    .value-text h4 {
+      font-size: 18px;
+      margin-bottom: 5px;
+      color: var(--primary-green);
+    }
+    
+    .value-text p {
+      font-size: 16px;
+      margin-bottom: 0;
+      color: #666;
+    }
+    
+    @media (max-width: 992px) {
+      .mission-content {
+        padding: 30px;
+      }
+      
+      .mission-image {
+        margin-top: 40px;
+        min-height: 250px;
+      }
+    }
+
+    .social-icons a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      margin-right: 10px;
+      transition: all 0.3s;
+    }
+    
+    .social-icons a:hover {
+      background: var(--accent-orange);
+      transform: translateY(-3px);
+    }
+    
+    /* Animations */
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(46, 125, 50, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(46, 125, 50, 0);
+      }
+    }
+    
+    /* Floating animation */
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+    
+    .floating {
+      animation: float 5s ease-in-out infinite;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 100px 0;
+        text-align: center;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hindi-tagline {
+        font-size: 1.2rem;
+      }
+      
+      .navbar-brand img {
+        height: 35px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .navbar-brand img {
+        height: 30px;
+      }
+    }
+    
+    .navbar-brand img {
+      height: 60px;
+      width: auto;
+      margin-right: 8px;
+      transition: all 0.3s;
+    }
+    
+    .navbar.scrolled .navbar-brand img {
+      height: 45px;
+    }
+
+    /* Scroll to top button */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: var(--accent-orange);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 1000;
+    }
+    
+    .scroll-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .scroll-to-top:hover {
+      background: var(--primary-green);
+      transform: translateY(-3px);
+    }
+    
+    /* Particle animation for hero */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      animation: floatParticle 15s infinite linear;
+    }
+    
+    @keyframes floatParticle {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100px) translateX(100px);
+        opacity: 0;
+      }
+    }
+    
+    /* Stats counter */
+    .stats {
+      background: linear-gradient(rgba(46, 125, 50, 0.9), rgba(46, 125, 50, 0.9)), 
+                  url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 80px 0;
+      color: white;
+      text-align: center;
+    }
+    
+    .stat-item {
+      margin-bottom: 30px;
+    }
+    
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .stat-text {
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Scroll to top button -->
+  <div class="scroll-to-top">
+    <i class="fas fa-chevron-up"></i>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container position-relative">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo.jpg" alt="Kanda Seeds Logo" class="floating">
+        Atharv<span> Agro Seeds</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+              data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="nav-indicator" id="navIndicator"></div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="particles" id="particles"></div>
+    <div class="container text-center hero-content">
+      <h1 class="display-4 animate__animated animate__fadeInDown">High Quality Onion Seeds for Better Yield</h1>
+      <span class="hindi-tagline animate__animated animate__fadeIn animate__delay-1s">प्याज के बीज - उन्नत किस्में, बेहतर पैदावार</span>
+      <p class="lead animate__animated animate__fadeIn animate__delay-2s">We are committed to providing farmers with premium quality onion seeds. Our seeds ensure high germination, healthy crops, and better productivity.</p>
+      <a href="products.html" class="btn animate__animated animate__fadeInUp animate__delay-3s">Explore Our Products</a>
+    </div>
+  </section>
+  
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-6 stat-item">
+          <div class="stat-number" data-count="95">0</div>
+          <div class="stat-text">Germination Rate</div>
+        </div>
+        <div class="col-md-3 col-6 stat-item">
+          <div class="stat-number" data-count="25">0</div>
+          <div class="stat-text">Years Experience</div>
+        </div>
+        <div class="col-md-3 col-6 stat-item">
+          <div class="stat-number" data-count="10000">0</div>
+          <div class="stat-text">Happy Farmers</div>
+        </div>
+        <div class="col-md-3 col-6 stat-item">
+          <div class="stat-number" data-count="15">0</div>
+          <div class="stat-text">Seed Varieties</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Mission Section - Redesigned -->
+  <section class="features">
+    <div class="mission-bg-pattern"></div>
+    <div class="container mission-container">
+      <div class="mission-content">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="mission-icon">
+              <i class="fas fa-seedling"></i>
+            </div>
+            <h2>Our Mission</h2>
+            <p>At Athrav Agro Seeds, our mission is to empower farmers with access to premium quality onion seeds that guarantee high germination, healthy crops, and better yield. We are dedicated to supporting sustainable farming practices and improving the livelihood of farmers across the country.</p>
+            
+            <div class="mission-values">
+              <div class="value-item">
+                <div class="value-icon">
+                  <i class="fas fa-bullseye"></i>
+                </div>
+                <div class="value-text">
+                  <h4>Quality Focus</h4>
+                  <p>Delivering the highest quality seeds for optimal yield</p>
+                </div>
+              </div>
+              
+              <div class="value-item">
+                <div class="value-icon">
+                  <i class="fas fa-handshake"></i>
+                </div>
+                <div class="value-text">
+                  <h4>Farmer Partnership</h4>
+                  <p>Building long-term relationships with farming communities</p>
+                </div>
+              </div>
+              
+              <div class="value-item">
+                <div class="value-icon">
+                  <i class="fas fa-leaf"></i>
+                </div>
+                <div class="value-text">
+                  <h4>Sustainability</h4>
+                  <p>Promoting environmentally responsible farming practices</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          
+          <div class="col-lg-6">
+            <div class="mission-image">
+              <img src="https://static.vecteezy.com/system/resources/previews/041/680/515/non_2x/ai-generated-onion-realistic-with-white-background-high-quality-ultra-hd-photo.jpg" alt="Our Mission - Farmers in field">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products">
+    <div class="container">
+      <h2 class="section-title display-5">Our Products</h2>
+      <div class="row">
+        <!-- Product 1 -->
+        <div class="col-md-4 mb-4">
+          <div class="product-card">
+            <img src="images/product1.webp" class="card-img-top product-img" alt="Red Onion Seeds">
+            <div class="card-body">
+              <h3 class="card-title">Red Onion Seeds</h3>
+              <p class="card-text">High-yield variety, suitable for all soil types. These seeds produce deep red bulbs with excellent storage quality.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 2 -->
+        <div class="col-md-4 mb-4">
+          <div class="product-card">
+            <img src="images/produc2.jpg" class="card-img-top product-img" alt="White Onion Seeds">
+            <div class="card-body">
+              <h3 class="card-title"> Yellow Onion Seeds</h3>
+              <p class="card-text">Popular for its long shelf life and quality bulbs. These white onions have a mild flavor and are perfect for salads.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 3 -->
+        <div class="col-md-4 mb-4">
+          <div class="product-card">
+            <img src="images/product11.jpg" class="card-img-top product-img" alt="Hybrid Onion Seeds">
+            <div class="card-body">
+              <h3 class="card-title">Hybrid Onion Seeds</h3>
+              <p class="card-text">Best choice for commercial farming with disease resistance. These hybrids offer uniform size and higher yields.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title display-5">Why Choose Our Seeds</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fas fa-seedling"></i>
+            </div>
+            <h3>High Germination Rate</h3>
+            <p>Our seeds have a 95%+ germination rate, ensuring more plants per packet and reduced waste.</p>
+          </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Disease Resistant</h3>
+            <p>Specially bred to resist common onion diseases, reducing crop loss and pesticide use.</p>
+          </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fas fa-truck"></i>
+            </div>
+            <h3>Quick Delivery</h3>
+            <p>We ensure prompt delivery of seeds to maintain their viability and quality.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <h5>Atharv biotech seed</h5>
+          <p>Providing high-quality onion seeds to farmers for over two decades. Our mission is to support agriculture with reliable, high-yielding seed varieties.</p>
+          <div class="social-icons mt-3">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+          <h5>Contact Us</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-map-marker-alt me-2"></i> 123 Farm Road, Agricultural Zone</li>
+            <li><i class="fas fa-phone me-2"></i> +91 98765 43210</li>
+            <li><i class="fas fa-envelope me-2"></i> info@kandaseeds.com</li>
+          </ul>
+        </div>
+      </div>
+      
+      <hr class="mt-4 mb-4" style="border-color: rgba(255,255,255,0.1);">
+      
+      <div class="text-center">
+        <p>&copy; 2025 Atharv Biotech Seed Company. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      const scrollToTop = document.querySelector('.scroll-to-top');
+      
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+        scrollToTop.classList.add('active');
+      } else {
+        navbar.classList.remove('scrolled');
+        scrollToTop.classList.remove('active');
+      }
+    });
+    
+    // Enhanced navbar indicator & active link handling
+    function initNavbarIndicator() {
+      const nav = document.querySelector('.navbar');
+      const indicator = document.getElementById('navIndicator');
+      const links = Array.from(document.querySelectorAll('.navbar .nav-link'));
+      if (!nav || !indicator || links.length === 0) return;
+
+      // Determine current page and set active link
+      const path = location.pathname.split('/').pop() || 'index.html';
+      let activeLink = links.find(l => l.getAttribute('href') === path) || links[0];
+      links.forEach(l => l.classList.toggle('active', l === activeLink));
+
+      function moveIndicator(target) {
+        const linkRect = target.getBoundingClientRect();
+        const containerRect = nav.querySelector('.container').getBoundingClientRect();
+        const left = linkRect.left - containerRect.left;
+        indicator.style.width = linkRect.width + 'px';
+        indicator.style.transform = `translateX(${left}px)`;
+      }
+
+      // Initial position
+      moveIndicator(activeLink);
+
+      // Hover interactions
+      links.forEach(link => {
+        link.addEventListener('mouseenter', () => moveIndicator(link));
+        link.addEventListener('focus', () => moveIndicator(link));
+        link.addEventListener('mouseleave', () => moveIndicator(activeLink));
+        link.addEventListener('blur', () => moveIndicator(activeLink));
+        link.addEventListener('click', () => { activeLink = link; links.forEach(l => l.classList.toggle('active', l===activeLink)); });
+      });
+
+      // Reposition on resize
+      window.addEventListener('resize', () => moveIndicator(activeLink));
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      initNavbarIndicator();
+    });
+    
+    // Scroll to top functionality
+    document.querySelector('.scroll-to-top').addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Create particles for hero section
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random position and animation delay
+        const left = Math.random() * 100;
+        const delay = Math.random() * 15;
+        const duration = 15 + Math.random() * 10;
+        
+        particle.style.left = `${left}%`;
+        particle.style.animationDelay = `${delay}s`;
+        particle.style.animationDuration = `${duration}s`;
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
+    
+    // Animate stats counter
+    function animateStats() {
+      const statNumbers = document.querySelectorAll('.stat-number');
+      
+      statNumbers.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-count'));
+        const duration = 2000; // 2 seconds
+        const step = target / (duration / 16); // 60fps
+        
+        let current = 0;
+        
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          
+          stat.textContent = Math.floor(current);
+        }, 16);
+      });
+    }
+    
+    // Intersection Observer for animations on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+          
+          // If it's the stats section, animate the numbers
+          if (entry.target.classList.contains('stats')) {
+            animateStats();
+          }
+        }
+      });
+    }, observerOptions);
+    
+    // Observe elements for animation
+    document.addEventListener('DOMContentLoaded', function() {
+      createParticles();
+      
+      // Observe sections for animation
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+      
+      // Add animation classes to specific elements
+      const missionContent = document.querySelector('.mission-content');
+      const productCards = document.querySelectorAll('.product-card');
+      const featureBoxes = document.querySelectorAll('.feature-box');
+      
+      missionContent.classList.add('animate__animated', 'animate__fadeIn');
+      
+      productCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.2}s`;
+        card.classList.add('animate__animated', 'animate__fadeInUp');
+      });
+      
+      featureBoxes.forEach((box, index) => {
+        box.style.animationDelay = `${index * 0.2}s`;
+        box.classList.add('animate__animated', 'animate__fadeInUp');
+      });
+    });
+  </script>
+</body>
+</html>

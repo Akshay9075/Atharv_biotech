@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Atharv Seeds</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    :root {
+      --primary-green: #2e7d32;
+      --secondary-green: #4CAF50;
+      --accent-orange: #ff9800;
+      --light-bg: #f8f9fa;
+      --dark-text: #333;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--dark-text);
+      background-color: var(--light-bg);
+      padding-top: 80px;
+      overflow-x: hidden;
+    }
+    
+    /* Navbar */
+    .navbar { box-shadow: 0 2px 10px rgba(0,0,0,0.1); background-color: white; transition: all 0.3s ease; }
+    .navbar.scrolled { background-color: rgba(255,255,255,0.95); backdrop-filter: blur(10px); padding: 5px 0; }
+    .navbar-brand { font-weight: 700; color: var(--primary-green); display: flex; align-items: center; gap: 8px; }
+    .navbar-brand img { height: 50px; width: auto; transition: transform 0.3s ease, height 0.3s ease; }
+    .navbar.scrolled .navbar-brand img { height: 42px; transform: translateY(-1px); }
+    .navbar-brand span { color: var(--accent-orange); }
+    .nav-link { font-weight: 600; color: var(--primary-green); transition: color 0.3s; position: relative; padding-bottom: 6px; }
+    .nav-link:hover { color: var(--accent-orange); }
+    .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: var(--accent-orange); transition: width 0.3s ease; }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    /* Sliding nav indicator */
+    .nav-indicator { position: absolute; bottom: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--primary-green), var(--accent-orange)); border-radius: 2px; transition: transform 0.3s ease, width 0.3s ease, left 0.3s ease; pointer-events: none; }
+    
+    /* Header */
+    .page-header {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                  url('https://images.unsplash.com/photo-1592924357228-91a4daadcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 7rem 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(46, 125, 50, 0.3), rgba(255, 152, 0, 0.3));
+      z-index: 1;
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Contact Section */
+    .contact-section {
+      padding: 80px 0;
+      position: relative;
+    }
+    
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234caf50' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    
+    .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .contact-info-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      padding: 2.5rem;
+      height: 100%;
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.5s ease;
+    }
+    
+    .contact-info-card.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .contact-info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    }
+    
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s;
+    }
+    
+    .contact-info-item:hover {
+      transform: translateX(5px);
+    }
+    
+    .contact-icon {
+      background-color: var(--primary-green);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      flex-shrink: 0;
+      transition: all 0.3s;
+    }
+    
+    .contact-info-item:hover .contact-icon {
+      background-color: var(--accent-orange);
+      transform: scale(1.1);
+    }
+    
+    .contact-details h4 {
+      color: var(--primary-green);
+      margin-bottom: 0.5rem;
+      transition: color 0.3s;
+    }
+    
+    .contact-info-item:hover .contact-details h4 {
+      color: var(--accent-orange);
+    }
+    
+    .contact-details p {
+      margin-bottom: 0;
+    }
+    
+    /* Map */
+    .map-container {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      margin-top: 2rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+    
+    .map-container.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .map-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .map-container iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+    }
+    
+    /* Form */
+    .contact-form {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 2.5rem;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: all 0.5s ease;
+    }
+    
+    .contact-form.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .contact-form:hover {
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    }
+    
+    .form-title {
+      color: var(--primary-green);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    
+    .form-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: var(--accent-orange);
+      transition: width 0.3s;
+    }
+    
+    .form-title:hover::after {
+      width: 100px;
+    }
+    
+    .form-control {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 0.8rem 1rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s;
+    }
+    
+    .form-control:focus {
+      border-color: var(--primary-green);
+      box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+      transform: translateY(-2px);
+    }
+    
+    .btn-primary {
+      background-color: var(--primary-green);
+      border-color: var(--primary-green);
+      padding: 0.8rem 2rem;
+      font-weight: 600;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.2);
+      transition: all 0.4s;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--secondary-green);
+      border-color: var(--secondary-green);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    }
+    
+    .btn-primary:hover:before {
+      left: 100%;
+    }
+    
+    /* Success Message */
+    .alert-success {
+      border-radius: 10px;
+      border: none;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.5s ease;
+    }
+    
+    .alert-success.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--primary-green);
+      color: white;
+      padding: 60px 0 30px;
+      margin-top: 4rem;
+      position: relative;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+    }
+    
+    footer .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    footer h5 {
+      font-weight: 700;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    footer h5::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: var(--accent-orange);
+      transition: width 0.3s;
+    }
+    
+    footer h5:hover::after {
+      width: 80px;
+    }
+    
+    footer a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+    
+    footer a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+    
+    footer a::before {
+      content: '→';
+      position: absolute;
+      left: -15px;
+      opacity: 0;
+      transition: all 0.3s;
+    }
+    
+    footer a:hover::before {
+      opacity: 1;
+      left: -10px;
+    }
+    
+    .social-icons a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      text-align: center;
+      line-height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icons a:hover {
+      background: var(--accent-orange);
+      transform: translateY(-3px);
+    }
+    
+    /* Scroll to top button */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: var(--accent-orange);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .scroll-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .scroll-to-top:hover {
+      background: var(--primary-green);
+      transform: translateY(-3px);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .page-header {
+        padding: 5rem 1rem;
+      }
+      
+      .contact-info-card, .contact-form {
+        margin-bottom: 2rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .navbar-brand img {
+        height: 35px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Scroll to top button -->
+  <div class="scroll-to-top">
+    <i class="fas fa-chevron-up"></i>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container position-relative">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo.jpg" alt="Kanda Seeds Logo">
+        Atharv<span> Agro Seeds</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="nav-indicator" id="navIndicator"></div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="page-header">
+    <div class="header-content">
+      <div class="container">
+        <h1 class="animate__animated animate__fadeInDown">Get in Touch With Us</h1>
+        <p class="lead animate__animated animate__fadeIn animate__delay-1s">We're here to answer any questions you may have</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="row">
+        <!-- Contact Information -->
+        <div class="col-lg-5 mb-4">
+          <div class="contact-info-card">
+            <h2 class="mb-4" style="color: var(--primary-green);">Contact Information</h2>
+            
+            <div class="contact-info-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-details">
+                <h4>Company Address</h4>
+                <p>123 Farm Road, Agricultural Zone<br>Nashik, Maharashtra 422101</p>
+              </div>
+            </div>
+            
+            <div class="contact-info-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-details">
+                <h4>Phone Number</h4>
+                <p>+91 98765 43210<br>+91 91234 56789</p>
+              </div>
+            </div>
+            
+            <div class="contact-info-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-details">
+                <h4>Email Address</h4>
+                <p>info@atharvseeds.com<br>support@atharvseeds.com</p>
+              </div>
+            </div>
+            
+            <div class="contact-info-item">
+              <div class="contact-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="contact-details">
+                <h4>Business Hours</h4>
+                <p>Monday - Friday: 9AM - 5PM<br>Saturday: 10AM - 2PM</p>
+              </div>
+            </div>
+            
+            <!-- Map -->
+            <div class="map-container">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120058.39507596405!2d73.70530742273436!3d19.990599999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddd290b09914b3%3A0xcb07845d9d28215c!2sNashik%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1689777821307!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="col-lg-7">
+          <div class="contact-form">
+            <h3 class="form-title">Send Us a Message</h3>
+            <form id="contactForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Your Name" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Your Email" required>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Subject">
+              </div>
+              
+              <div class="form-group">
+                <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+              </div>
+              
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">Send Message</button>
+              </div>
+            </form>
+            
+            <!-- Success Message (Hidden by default) -->
+            <div id="formSuccess" class="alert alert-success mt-4" role="alert">
+              <i class="fas fa-check-circle me-2"></i> Thank you for your message! We'll get back to you soon.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <h5>Atharv Biotech seed</h5>
+          <p>Providing high-quality onion seeds to farmers for over two decades. Our mission is to support agriculture with reliable, high-yielding seed varieties.</p>
+          <div class="social-icons mt-3">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+          <h5>Contact Us</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-map-marker-alt me-2"></i> 123 Farm Road, Agricultural Zone</li>
+            <li><i class="fas fa-phone me-2"></i> +91 98765 43210</li>
+            <li><i class="fas fa-envelope me-2"></i> info@atharvseeds.com</li>
+          </ul>
+        </div>
+      </div>
+      
+      <hr class="mt-4 mb-4" style="border-color: rgba(255,255,255,0.1);">
+      
+      <div class="text-center">
+        <p>&copy; 2025 Atharv Biotech Seed Company. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      const scrollToTop = document.querySelector('.scroll-to-top');
+      
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+        scrollToTop.classList.add('active');
+      } else {
+        navbar.classList.remove('scrolled');
+        scrollToTop.classList.remove('active');
+      }
+    });
+    
+    // Scroll to top functionality
+    document.querySelector('.scroll-to-top').addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Form submission handling (frontend only)
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Show success message with animation
+      const successAlert = document.getElementById('formSuccess');
+      successAlert.classList.add('show');
+      
+      // Reset form
+      this.reset();
+      
+      // Hide success message after 5 seconds
+      setTimeout(function() {
+        successAlert.classList.remove('show');
+      }, 5000);
+    });
+    
+    // Animate elements on scroll
+    function animateOnScroll() {
+      const contactInfoCard = document.querySelector('.contact-info-card');
+      const contactForm = document.querySelector('.contact-form');
+      const mapContainer = document.querySelector('.map-container');
+      
+      const contactInfoTop = contactInfoCard.getBoundingClientRect().top;
+      const contactFormTop = contactForm.getBoundingClientRect().top;
+      const mapContainerTop = mapContainer.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+      
+      if (contactInfoTop < windowHeight * 0.8) {
+        contactInfoCard.classList.add('visible');
+      }
+      
+      if (contactFormTop < windowHeight * 0.8) {
+        contactForm.classList.add('visible');
+      }
+      
+      if (mapContainerTop < windowHeight * 0.8) {
+        mapContainer.classList.add('visible');
+      }
+    }
+    
+    // Intersection Observer for animations on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains('page-header')) {
+            entry.target.classList.add('animate__animated', 'animate__fadeInDown');
+          }
+        }
+      });
+    }, observerOptions);
+    
+    // Observe elements for animation
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initial animation check
+      animateOnScroll();
+      
+      // Observe sections for animation
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+      
+      // Hide success message initially
+      document.getElementById('formSuccess').classList.remove('show');
+    });
+    
+    // Animate on scroll
+    window.addEventListener('scroll', animateOnScroll);
+
+    // Enhanced navbar indicator & active link handling
+    function initNavbarIndicator() {
+      const nav = document.querySelector('.navbar');
+      const indicator = document.getElementById('navIndicator');
+      const links = Array.from(document.querySelectorAll('.navbar .nav-link'));
+      if (!nav || !indicator || links.length === 0) return;
+
+      const path = location.pathname.split('/').pop() || 'index.html';
+      let activeLink = links.find(l => l.getAttribute('href') === path) || links[0];
+      links.forEach(l => l.classList.toggle('active', l === activeLink));
+
+      function moveIndicator(target) {
+        const linkRect = target.getBoundingClientRect();
+        const containerRect = nav.querySelector('.container').getBoundingClientRect();
+        const left = linkRect.left - containerRect.left;
+        indicator.style.width = linkRect.width + 'px';
+        indicator.style.transform = `translateX(${left}px)`;
+      }
+      moveIndicator(activeLink);
+
+      links.forEach(link => {
+        link.addEventListener('mouseenter', () => moveIndicator(link));
+        link.addEventListener('focus', () => moveIndicator(link));
+        link.addEventListener('mouseleave', () => moveIndicator(activeLink));
+        link.addEventListener('blur', () => moveIndicator(activeLink));
+        link.addEventListener('click', () => { activeLink = link; links.forEach(l => l.classList.toggle('active', l===activeLink)); });
+      });
+      window.addEventListener('resize', () => moveIndicator(activeLink));
+    }
+    document.addEventListener('DOMContentLoaded', initNavbarIndicator);
+  </script>
+</body>
+</html>

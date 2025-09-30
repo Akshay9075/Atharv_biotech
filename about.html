@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Atharv Seed Company</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    :root {
+      --primary-green: #2e7d32;
+      --secondary-green: #4CAF50;
+      --accent-orange: #ff9800;
+      --light-bg: #f8f9fa;
+      --dark-text: #333;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: var(--dark-text);
+      padding-top: 80px;
+      background-color: var(--light-bg);
+      overflow-x: hidden;
+    }
+    
+    /* Navbar */
+    .navbar {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      background-color: white;
+      transition: all 0.3s ease;
+    }
+    
+    .navbar.scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 5px 0;
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      color: var(--primary-green);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .navbar-brand img {
+      height: 50px;
+      width: auto;
+      transition: transform 0.3s ease, height 0.3s ease;
+    }
+    
+    .navbar.scrolled .navbar-brand img {
+      height: 42px;
+      transform: translateY(-1px);
+    }
+    
+    .navbar-brand span { color: var(--accent-orange); }
+
+    .nav-link {
+      font-weight: 600;
+      color: var(--primary-green);
+      transition: color 0.3s;
+      position: relative;
+      padding-bottom: 6px;
+    }
+    .nav-link:hover { color: var(--accent-orange); }
+    .nav-link::after {
+      content: '';
+      position: absolute; left: 0; bottom: 0; height: 2px; width: 0;
+      background-color: var(--accent-orange);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    /* Sliding nav indicator */
+    .nav-indicator {
+      position: absolute; bottom: 0; left: 0; height: 3px; width: 0;
+      background: linear-gradient(90deg, var(--primary-green), var(--accent-orange));
+      border-radius: 2px; pointer-events: none;
+      transition: transform 0.3s ease, width 0.3s ease, left 0.3s ease;
+    }
+    
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                  url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 120px 0;
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(46, 125, 50, 0.3), rgba(255, 152, 0, 0.3));
+      z-index: 1;
+    }
+    
+    .page-header-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .page-header h1 {
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      font-size: 3.5rem;
+    }
+    
+    .breadcrumb {
+      justify-content: center;
+      background: transparent;
+      margin-bottom: 0;
+    }
+    
+    .breadcrumb-item a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+    }
+    
+    .breadcrumb-item.active {
+      color: var(--accent-orange);
+    }
+    
+    /* About Sections */
+    .about-section {
+      padding: 80px 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      color: var(--primary-green);
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background-color: var(--accent-orange);
+      border-radius: 2px;
+      transition: width 0.3s;
+    }
+    
+    .section-title:hover::after {
+      width: 120px;
+    }
+    
+    .history-box, .mission-box {
+      background: white;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .history-box:hover, .mission-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    }
+    
+    .hindi-text {
+      font-style: italic;
+      color: #666;
+      border-left: 4px solid var(--accent-orange);
+      padding-left: 15px;
+      margin-top: 15px;
+    }
+    
+    /* Enhanced History Section */
+    .about-history-section {
+      position: relative;
+      background-image:
+        radial-gradient(circle at 10% 10%, rgba(76, 175, 80, 0.08) 0, rgba(76,175,80,0.08) 120px, transparent 121px),
+        radial-gradient(circle at 90% 20%, rgba(255, 152, 0, 0.06) 0, rgba(255,152,0,0.06) 140px, transparent 141px),
+        radial-gradient(circle at 20% 90%, rgba(46, 125, 50, 0.05) 0, rgba(46,125,50,0.05) 160px, transparent 161px);
+      overflow: hidden;
+      padding: 80px 0 60px 0;
+    }
+    
+    .about-history-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234caf50' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    
+    .history-title {
+      font-size: 2.5rem;
+      color: var(--primary-green);
+      text-align: center;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #c8e6c9;
+    }
+    
+    .history-box {
+      background: rgba(255,255,255,0.95);
+      border-radius: 32px;
+      box-shadow: 0 8px 32px rgba(46,125,50,0.10);
+      padding: 40px 30px 30px 30px;
+      margin-top: 20px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(46, 125, 50, 0.1);
+    }
+    
+    .history-box::before {
+      content: "";
+      position: absolute;
+      top: -40px; 
+      left: -40px;
+      width: 120px; 
+      height: 120px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%232e7d32" opacity="0.1"><path d="M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M21,9V15C21,16.1 20.1,17 19,17H18L15,21V17H9V21L6,17H5C3.9,17 3,16.1 3,15V9C3,7.9 3.9,7 5,7H19C20.1,7 21,7.9 21,9Z" /></svg>') no-repeat center/contain;
+      z-index: 0;
+    }
+    
+    .history-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .history-content h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--secondary-green);
+      margin-bottom: 18px;
+      letter-spacing: 0.5px;
+    }
+    
+    .history-content p {
+      font-size: 1.08rem;
+      color: #4e5d4e;
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+    
+    .timeline {
+      position: relative;
+      margin-left: 30px;
+      margin-top: 10px;
+      padding-left: 20px;
+      border-left: 4px solid var(--primary-green);
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 38px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+    
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .timeline-content {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px rgba(76,175,80,0.08);
+      padding: 18px 22px 16px 22px;
+      position: relative;
+      margin-left: 18px;
+      transition: box-shadow 0.3s, transform 0.3s;
+      border: 1px solid rgba(76, 175, 80, 0.1);
+    }
+    
+    .timeline-content:hover {
+      box-shadow: 0 6px 24px rgba(76,175,80,0.18);
+      transform: translateX(5px);
+    }
+    
+    .timeline-year {
+      position: absolute;
+      left: -80px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--primary-green);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(46,125,50,0.13);
+      border: 3px solid #fff;
+      z-index: 2;
+      transition: background 0.3s, transform 0.3s;
+    }
+    
+    .timeline-year:hover {
+      background: var(--accent-orange);
+      transform: translateY(-50%) scale(1.05);
+    }
+    
+    .timeline-content p {
+      margin: 0;
+      color: #3e4d3e;
+      font-size: 1.08rem;
+      font-weight: 500;
+      letter-spacing: 0.1px;
+    }
+    
+    /* Vision & Mission Section */
+    .vision-mission-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+    
+    .mission-box {
+      text-align: center;
+      height: 100%;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .mission-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.5s;
+    }
+    
+    .mission-box:hover::before {
+      left: 100%;
+    }
+    
+    .mission-icon {
+      font-size: 3rem;
+      color: var(--primary-green);
+      margin-bottom: 20px;
+      transition: transform 0.3s, color 0.3s;
+    }
+    
+    .mission-box:hover .mission-icon {
+      transform: scale(1.1);
+      color: var(--accent-orange);
+    }
+    
+    /* Certification Section */
+    .certification {
+      background-image:
+        radial-gradient(circle at 10% 10%, rgba(76, 175, 80, 0.08) 0, rgba(76,175,80,0.08) 120px, transparent 121px),
+        radial-gradient(circle at 90% 20%, rgba(255, 152, 0, 0.06) 0, rgba(255,152,0,0.06) 140px, transparent 141px),
+        radial-gradient(circle at 20% 90%, rgba(46, 125, 50, 0.05) 0, rgba(46,125,50,0.05) 160px, transparent 161px);
+      padding: 80px 0;
+      position: relative;
+    }
+    
+    .cert-card {
+      text-align: center;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      height: 100%;
+      background: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cert-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary-green), var(--accent-orange));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    
+    .cert-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .cert-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    }
+    
+    .cert-icon {
+      font-size: 3rem;
+      color: var(--secondary-green);
+      margin-bottom: 20px;
+      transition: transform 0.3s;
+    }
+    
+    .cert-card:hover .cert-icon {
+      transform: rotateY(180deg);
+    }
+    
+    /* Gallery Section */
+    .gallery {
+      padding: 80px 0;
+      background: #f8f9fa;
+    }
+    
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .gallery-img {
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+      height: 250px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .gallery-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    
+    .gallery-img::after {
+      content: "";
+      position: absolute;
+      top: 0; 
+      left: 0;
+      width: 100%; 
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .gallery-img:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+    }
+    
+    .gallery-img:hover img {
+      transform: scale(1.1);
+    }
+    
+    .gallery-img:hover::after {
+      opacity: 1;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--primary-green);
+      color: white;
+      padding: 60px 0 30px;
+      position: relative;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+    }
+    
+    footer .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    footer h5 {
+      font-weight: 700;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    footer h5::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: var(--accent-orange);
+      transition: width 0.3s;
+    }
+    
+    footer h5:hover::after {
+      width: 80px;
+    }
+    
+    footer a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+    
+    footer a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+    
+    footer a::before {
+      content: '→';
+      position: absolute;
+      left: -15px;
+      opacity: 0;
+      transition: all 0.3s;
+    }
+    
+    footer a:hover::before {
+      opacity: 1;
+      left: -10px;
+    }
+    
+    .social-icons a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      margin-right: 10px;
+      transition: all 0.3s;
+    }
+    
+    .social-icons a:hover {
+      background: var(--accent-orange);
+      transform: translateY(-3px);
+    }
+    
+    /* Scroll to top button */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: var(--accent-orange);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .scroll-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .scroll-to-top:hover {
+      background: var(--primary-green);
+      transform: translateY(-3px);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .page-header {
+        padding: 80px 0;
+      }
+      
+      .page-header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .timeline {
+        margin-left: 0;
+        padding-left: 0;
+        border-left: none;
+      }
+      
+      .timeline-content {
+        margin-left: 0;
+      }
+      
+      .timeline-year {
+        position: relative;
+        left: 0;
+        top: 0;
+        transform: none;
+        margin-bottom: 15px;
+        display: inline-block;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .navbar-brand img {
+        height: 35px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Scroll to top button -->
+  <div class="scroll-to-top">
+    <i class="fas fa-chevron-up"></i>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container position-relative">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo.jpg" alt="Kanda Seeds Logo">
+        Atharv<span> Agro Seeds</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+              data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="nav-indicator" id="navIndicator"></div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="page-header-content">
+      <div class="container">
+        <h1 class="display-4 animate__animated animate__fadeInDown">About Atharv Seeds</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb animate__animated animate__fadeIn animate__delay-1s">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">About Us</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company History -->
+  <section class="about-history-section">
+    <div class="container">
+      <h2 class="history-title animate__animated animate__fadeIn">
+        <i class="fas fa-seedling" style="color:var(--primary-green);margin-right:10px;"></i>
+        Our History
+      </h2>
+      <div class="history-box shadow-lg animate__animated animate__fadeInUp">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="history-content">
+              <h3>
+                <i class="fas fa-leaf" style="color:var(--secondary-green);margin-right:8px;"></i>
+                Over Two Decades of Excellence
+              </h3>
+              <p>
+                <span style="font-size:1.2em; color:var(--accent-orange); font-weight:600;">Atharv Seed Company</span> was established in <b>1998</b> with a simple mission: to provide farmers with the highest quality onion seeds for healthy, productive crops. What began as a small family operation has blossomed into one of the region's most trusted seed suppliers.
+              </p>
+              <p>
+                Over the years, we've cultivated strong relationships with farmers across the country, learning from their experiences and continuously innovating our seed varieties to meet the challenges of changing climates and market demands.
+              </p>
+              <div class="d-flex align-items-center mt-4">
+                <i class="fas fa-sprout" style="font-size: 2rem; color: var(--primary-green); margin-right: 12px;"></i>
+                <span style="font-size:1.08em;color:var(--primary-green);font-weight:600;"> Rooted in Trust, Growing with Innovation</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-content">
+                  <div class="timeline-year"><i class="fas fa-seedling"></i> 1998</div>
+                  <p>Company founded with a focus on quality onion seeds</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-content">
+                  <div class="timeline-year"><i class="fas fa-leaf"></i> 2005</div>
+                  <p>Introduced our first hybrid onion seed variety</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-content">
+                  <div class="timeline-year"><i class="fas fa-tractor"></i> 2012</div>
+                  <p>Expanded operations to serve farmers across multiple states</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-content">
+                  <div class="timeline-year"><i class="fas fa-award"></i> 2020</div>
+                  <p>Launched disease-resistant seed varieties developed in our research farm</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision & Mission -->
+  <section class="vision-mission-section">
+    <div class="container">
+      <h2 class="section-title animate__animated animate__fadeIn">Vision & Mission</h2>
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <div class="mission-box animate__animated animate__fadeInLeft">
+            <div class="mission-icon">
+              <i class="fas fa-eye"></i>
+            </div>
+            <h3>Our Vision</h3>
+            <p>To be the leading provider of high-quality seeds that empower farmers to achieve sustainable agricultural success and food security for our nation.</p>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="mission-box animate__animated animate__fadeInRight">
+            <div class="mission-icon">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <h3>Our Mission</h3>
+            <p>To develop, produce, and distribute superior quality onion seeds through continuous research and innovation, while maintaining fair practices that benefit both farmers and the environment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certification -->
+  <section class="certification">
+    <div class="container">
+      <h2 class="section-title animate__animated animate__fadeIn">Quality Standards & Certifications</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="cert-card animate__animated animate__fadeInUp">
+            <div class="cert-icon">
+              <i class="fas fa-award"></i>
+            </div>
+            <h3>ISO 9001:2015 Certified</h3>
+            <p>Our quality management system is certified to international standards, ensuring consistent product quality.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="cert-card animate__animated animate__fadeInUp animate__delay-1s">
+            <div class="cert-icon">
+              <i class="fas fa-seedling"></i>
+            </div>
+            <h3>Seed Certification</h3>
+            <p>All our seeds meet the certification standards set by the National Seeds Corporation of India.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="cert-card animate__animated animate__fadeInUp animate__delay-2s">
+            <div class="cert-icon">
+              <i class="fas fa-flask"></i>
+            </div>
+            <h3>Quality Testing</h3>
+            <p>Every seed batch undergoes rigorous testing for germination rate, purity, and disease resistance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery">
+    <div class="container">
+      <h2 class="section-title animate__animated animate__fadeIn">Our Farm & Facilities</h2>
+      <div class="gallery-grid">
+        <div class="gallery-img animate__animated animate__fadeInLeft">
+          <img src="images/about_product1.webp" alt="Our Research Farm">
+        </div>
+        <div class="gallery-img animate__animated animate__fadeInUp">
+          <img src="images/about_product3.jpg" alt="Seed Processing">
+        </div>
+        <div class="gallery-img animate__animated animate__fadeInRight">
+          <img src="images/background.jpg" alt="Quality Testing Lab">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <h5>Atharv biotech seed</h5>
+          <p>Providing high-quality onion seeds to farmers for over two decades. Our mission is to support agriculture with reliable, high-yielding seed varieties.</p>
+          <div class="social-icons mt-3">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+          <h5>Contact Us</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-map-marker-alt me-2"></i> 123 Farm Road, Agricultural Zone</li>
+            <li><i class="fas fa-phone me-2"></i> +91 98765 43210</li>
+            <li><i class="fas fa-envelope me-2"></i> info@kandaseeds.com</li>
+          </ul>
+        </div>
+      </div>
+      
+      <hr class="mt-4 mb-4" style="border-color: rgba(255,255,255,0.1);">
+      
+      <div class="text-center">
+        <p>&copy; 2025 Atharv Biotech Seed Company. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      const scrollToTop = document.querySelector('.scroll-to-top');
+      
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+        scrollToTop.classList.add('active');
+      } else {
+        navbar.classList.remove('scrolled');
+        scrollToTop.classList.remove('active');
+      }
+    });
+    
+    // Scroll to top functionality
+    document.querySelector('.scroll-to-top').addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Timeline animation on scroll
+    function animateTimeline() {
+      const timelineItems = document.querySelectorAll('.timeline-item');
+      
+      timelineItems.forEach((item, index) => {
+        const itemTop = item.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (itemTop < windowHeight * 0.8) {
+          setTimeout(() => {
+            item.classList.add('visible');
+          }, index * 300);
+        }
+      });
+    }
+    
+    // Intersection Observer for animations on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Add animation classes based on element position
+          if (entry.target.classList.contains('section-title')) {
+            entry.target.classList.add('animate__animated', 'animate__fadeIn');
+          }
+          
+          if (entry.target.classList.contains('mission-box')) {
+            if (entry.target.parentElement.classList.contains('col-lg-6')) {
+              if (entry.target.parentElement.previousElementSibling) {
+                entry.target.classList.add('animate__animated', 'animate__fadeInLeft');
+              } else {
+                entry.target.classList.add('animate__animated', 'animate__fadeInRight');
+              }
+            }
+          }
+          
+          if (entry.target.classList.contains('cert-card')) {
+            entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+          }
+          
+          if (entry.target.classList.contains('gallery-img')) {
+            if (entry.target.previousElementSibling && entry.target.nextElementSibling) {
+              entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+            } else if (!entry.target.previousElementSibling) {
+              entry.target.classList.add('animate__animated', 'animate__fadeInLeft');
+            } else {
+              entry.target.classList.add('animate__animated', 'animate__fadeInRight');
+            }
+          }
+        }
+      });
+    }, observerOptions);
+    
+    // Observe elements for animation
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initial timeline animation
+      animateTimeline();
+      
+      // Observe sections for animation
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+      
+      // Observe specific elements
+      const titles = document.querySelectorAll('.section-title');
+      const missionBoxes = document.querySelectorAll('.mission-box');
+      const certCards = document.querySelectorAll('.cert-card');
+      const galleryImgs = document.querySelectorAll('.gallery-img');
+      
+      titles.forEach(title => observer.observe(title));
+      missionBoxes.forEach(box => observer.observe(box));
+      certCards.forEach(card => observer.observe(card));
+      galleryImgs.forEach(img => observer.observe(img));
+    });
+    
+    // Animate timeline on scroll
+    window.addEventListener('scroll', animateTimeline);
+
+    // Enhanced navbar indicator & active link handling
+    function initNavbarIndicator() {
+      const nav = document.querySelector('.navbar');
+      const indicator = document.getElementById('navIndicator');
+      const links = Array.from(document.querySelectorAll('.navbar .nav-link'));
+      if (!nav || !indicator || links.length === 0) return;
+
+      const path = location.pathname.split('/').pop() || 'index.html';
+      let activeLink = links.find(l => l.getAttribute('href') === path) || links[0];
+      links.forEach(l => l.classList.toggle('active', l === activeLink));
+
+      function moveIndicator(target) {
+        const linkRect = target.getBoundingClientRect();
+        const containerRect = nav.querySelector('.container').getBoundingClientRect();
+        const left = linkRect.left - containerRect.left;
+        indicator.style.width = linkRect.width + 'px';
+        indicator.style.transform = `translateX(${left}px)`;
+      }
+      moveIndicator(activeLink);
+
+      links.forEach(link => {
+        link.addEventListener('mouseenter', () => moveIndicator(link));
+        link.addEventListener('focus', () => moveIndicator(link));
+        link.addEventListener('mouseleave', () => moveIndicator(activeLink));
+        link.addEventListener('blur', () => moveIndicator(activeLink));
+        link.addEventListener('click', () => { activeLink = link; links.forEach(l => l.classList.toggle('active', l===activeLink)); });
+      });
+      window.addEventListener('resize', () => moveIndicator(activeLink));
+    }
+    document.addEventListener('DOMContentLoaded', initNavbarIndicator);
+  </script>
+</body>
+</html>

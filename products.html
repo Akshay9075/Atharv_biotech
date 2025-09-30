@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - Athrav Agro Seeds</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <!-- Google Fonts for attractive modal typography -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-green: #2e7d32;
+      --secondary-green: #4CAF50;
+      --accent-orange: #ff9800;
+      --light-bg: #f8f9fa;
+      --dark-text: #333;
+      --display-font: 'Playfair Display', serif;
+      --ui-font: 'Poppins', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+    
+    body {
+      font-family: var(--ui-font);
+      color: var(--dark-text);
+      padding-top: 80px;
+      background-color: var(--light-bg);
+      overflow-x: hidden;
+    }
+    
+    /* Navbar */
+    .navbar {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      background-color: white;
+      transition: all 0.3s ease;
+    }
+    
+    .navbar.scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 5px 0;
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      color: var(--primary-green);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .navbar-brand img { height: 50px; width: auto; transition: transform 0.3s ease, height 0.3s ease; }
+    .navbar.scrolled .navbar-brand img { height: 42px; transform: translateY(-1px); }
+
+    .nav-link { font-weight: 600; color: var(--primary-green); transition: color 0.3s; position: relative; padding-bottom: 6px; }
+    .nav-link:hover { color: var(--accent-orange); }
+    .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: var(--accent-orange); transition: width 0.3s ease; }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    /* Sliding nav indicator */
+    .nav-indicator { position: absolute; bottom: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--primary-green), var(--accent-orange)); border-radius: 2px; transition: transform 0.3s ease, width 0.3s ease, left 0.3s ease; pointer-events: none; }
+    
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                  url('https://images.unsplash.com/photo-1592924357228-91a4daadcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 120px 0;
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(46, 125, 50, 0.3), rgba(255, 152, 0, 0.3));
+      z-index: 1;
+    }
+    
+    .page-header-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .page-header h1 {
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      font-size: 3.5rem;
+    }
+    
+    .breadcrumb {
+      justify-content: center;
+      background: transparent;
+      margin-bottom: 0;
+    }
+    
+    .breadcrumb-item a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+    }
+    
+    .breadcrumb-item.active {
+      color: var(--accent-orange);
+    }
+    
+    /* Products Section */
+    .products-section {
+      padding: 80px 0;
+      position: relative;
+    }
+    
+    .products-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234caf50' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      color: var(--primary-green);
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background-color: var(--accent-orange);
+      border-radius: 2px;
+      transition: width 0.3s;
+    }
+    
+    .section-title:hover::after {
+      width: 120px;
+    }
+    
+    /* Category Filter */
+    .category-filter {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      gap: 15px;
+    }
+    
+    .filter-btn {
+      background: white;
+      border: 2px solid var(--primary-green);
+      color: var(--primary-green);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary-green);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+    }
+    
+    /* Product Cards */
+    .product-card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin-bottom: 30px;
+      height: 100%;
+      background: white;
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+    
+    .product-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+    
+    .product-img-container {
+      position: relative;
+      overflow: hidden;
+      height: 250px;
+      background: #f8f9fa;
+    }
+    
+    .product-card img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 15px;
+      transition: transform 0.5s;
+    }
+    
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .card-body {
+      padding: 25px;
+    }
+    
+    .card-title {
+      color: var(--primary-green);
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    
+    .product-category {
+      display: inline-block;
+      background: var(--accent-orange);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-bottom: 15px;
+    }
+    
+    .product-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+    
+    .product-features li {
+      margin-bottom: 8px;
+      padding-left: 25px;
+      position: relative;
+    }
+    
+    .product-features li:before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--secondary-green);
+      font-weight: bold;
+    }
+    
+    /* Expandable Details */
+    .product-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    
+    .product-details.expanded {
+      max-height: 1000px;
+    }
+    
+    .details-btn {
+      background: transparent;
+      border: 2px solid var(--primary-green);
+      color: var(--primary-green);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s;
+      width: 100%;
+      position: relative;
+      margin-bottom: 15px;
+      cursor: pointer;
+    }
+    
+    .details-btn:after {
+      /* content: '▼'; */
+      font-size: 0.8rem;
+      margin-left: 10px;
+      transition: transform 0.3s;
+    }
+    
+    .details-btn.expanded:after {
+      transform: rotate(180deg);
+    }
+    
+    .details-btn:hover {
+      background: var(--primary-green);
+      color: white;
+    }
+    
+    /* Product Details Content */
+    .details-content {
+      padding: 20px 0;
+    }
+    
+    .detail-item {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .detail-icon {
+      color: var(--accent-orange);
+      margin-right: 10px;
+      font-size: 1.1rem;
+      margin-top: 2px;
+    }
+    
+    .detail-label {
+      font-weight: 600;
+      color: var(--primary-green);
+      margin-bottom: 5px;
+    }
+    
+    /* Add to Cart Button */
+    .add-to-cart-btn {
+      background: var(--accent-orange);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: all 0.3s;
+      width: 100%;
+      margin-top: 15px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .add-to-cart-btn:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.2);
+      transition: all 0.4s;
+    }
+    
+    .add-to-cart-btn:hover {
+      background: #e68900;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
+    }
+    
+    .add-to-cart-btn:hover:before {
+      left: 100%;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--primary-green);
+      color: white;
+      padding: 60px 0 30px;
+      position: relative;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+    }
+    
+    footer .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    footer h5 {
+      font-weight: 700;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    footer h5::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: var(--accent-orange);
+      transition: width 0.3s;
+    }
+    
+    footer h5:hover::after {
+      width: 80px;
+    }
+    
+    footer a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+    
+    footer a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+    
+    footer a::before {
+      content: '→';
+      position: absolute;
+      left: -15px;
+      opacity: 0;
+      transition: all 0.3s;
+    }
+    
+    footer a:hover::before {
+      opacity: 1;
+      left: -10px;
+    }
+    
+    .social-icons a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      margin-right: 10px;
+      transition: all 0.3s;
+    }
+    
+    .social-icons a:hover {
+      background: var(--accent-orange);
+      transform: translateY(-3px);
+    }
+    
+    /* Scroll to top button */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: var(--accent-orange);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .scroll-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .scroll-to-top:hover {
+      background: var(--primary-green);
+      transform: translateY(-3px);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .page-header {
+        padding: 80px 0;
+      }
+      
+      .page-header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .category-filter {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .filter-btn {
+        width: 200px;
+        text-align: center;
+      }
+    }
+    
+    .navbar-brand img {
+      height: 60px;
+      width: auto;
+      margin-right: 8px;
+      transition: all 0.3s;
+    }
+    
+    .navbar.scrolled .navbar-brand img {
+      height: 45px;
+    }
+    
+    @media (max-width: 768px) {
+      .navbar-brand img {
+        height: 35px;
+      }
+    }
+
+     :root {
+            --primary-color: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --accent-color: #ff9800;
+            --text-dark: #333;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --border-color: #e0e0e0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            background-color: #f5f5f5;
+        }
+        
+        .products-section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+        
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            padding: 8px 20px;
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .product-img-container {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .product-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-img-container img {
+            transform: scale(1.05);
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .product-category {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+        
+        .card-text {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .product-features {
+            padding-left: 0;
+            list-style-type: none;
+            margin-bottom: 20px;
+        }
+        
+        .product-features li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .product-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .details-btn {
+            width: 50%;
+            display: block;
+            margin: 0 auto; 
+            padding: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .details-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Modal Styles */
+        body.modal-open { overflow: hidden; }
+        .product-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 1060; overflow-y: auto; padding: 24px; }
+        .product-modal.active { display: block; animation: modalBackdrop 0.25s ease-out; }
+        
+        @keyframes modalBackdrop {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 900px;
+            margin: 40px auto;
+            overflow: hidden;
+            animation: modalFadeIn 0.4s ease-out;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .modal-title {
+            margin: 0;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+        
+        .modal-body {
+            padding: 0;
+        }
+        
+        .modal-product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .modal-details {
+            padding: 25px;
+        }
+        
+        .modal-category {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .modal-product-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+        
+        .modal-product-description {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        
+        .modal-features {
+            padding-left: 0;
+            list-style-type: none;
+            margin-bottom: 25px;
+        }
+        
+        .modal-features li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .modal-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .detail-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(46, 125, 50, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 3px;
+        }
+        
+        .detail-item p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            border-top: 1px solid var(--border-color);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .price-section {
+            display: flex;
+            align-items: center;
+        }
+        
+        .price-label {
+            font-weight: 600;
+            margin-right: 10px;
+            color: var(--text-dark);
+        }
+        
+        .price-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .add-to-cart-btn {
+            padding: 10px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .add-to-cart-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 20px auto;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .price-section {
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+        }
+
+    /* Animated Product Modal (refined visuals) */
+    body.modal-open { overflow: hidden; }
+    .product-modal { display: none; position: fixed; inset: 0; background: rgba(7, 20, 12, 0.65); z-index: 1060; overflow-y: auto; padding: 24px; backdrop-filter: blur(2px); }
+    .product-modal.active { display: block; animation: modalBackdrop 0.25s ease-out; }
+    @keyframes modalBackdrop { from { opacity: 0; } to { opacity: 1; } }
+    .modal-dialog { max-width: 1040px; margin: 48px auto; }
+    .modal-content {
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.95));
+      border-radius: 28px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.28), 0 0 0 1px rgba(46,125,50,0.06) inset;
+      overflow: hidden;
+      transform: translateY(22px) scale(0.985);
+      opacity: 0;
+      animation: modalIn 420ms cubic-bezier(.2,.8,.2,1) forwards;
+    }
+    @keyframes modalIn { to { transform: translateY(0) scale(1); opacity: 1; } }
+    .modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 28px; border-bottom: 1px solid rgba(0,0,0,0.06);
+      background: linear-gradient(180deg, rgba(249,253,250,0.9), rgba(255,255,255,0.6));
+    }
+    .modal-title { margin: 0; font-weight: 800; letter-spacing: .2px; color: var(--primary-dark, #1b5e20); font-size: 2rem; }
+    .modal-close { background: transparent; border: none; font-size: 1.9rem; line-height: 1; cursor: pointer; color: #8aa18f; transition: transform .2s ease, color .2s ease; }
+    .modal-close:hover { transform: rotate(90deg); color: var(--primary-color, #2e7d32); }
+
+    .modal-body {
+      display: grid; grid-template-columns: 1.05fr 1.4fr; gap: 0;
+      background:
+        radial-gradient(1000px 1000px at -10% -30%, rgba(76,175,80,0.06), transparent 55%),
+        radial-gradient(1000px 1000px at 120% 120%, rgba(255,152,0,0.06), transparent 50%);
+    }
+
+    .modal-figure { background: linear-gradient(180deg, #fbfffc, #f3fbf5); display: grid; place-items: center; position: relative; }
+    .modal-figure::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(240px 240px at 20% 10%, rgba(46,125,50,0.05), transparent 60%); }
+    .modal-image { width: 100%; height: 380px; object-fit: contain; transition: transform .35s ease; }
+    .modal-image:hover { transform: scale(1.03); }
+
+    .modal-details-pane { padding: 28px; background: #ffffff; border-radius: 28px 0 0 28px; }
+    .modal-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+    .modal-badge { background: var(--primary-light, #4caf50); color: #fff; font-size: .82rem; padding: 6px 14px; border-radius: 999px; box-shadow: 0 4px 12px rgba(76,175,80,0.25); }
+    .modal-description { color: var(--text-light, #666); margin: 10px 0 18px; font-size: 1rem; }
+
+    .modal-features { padding-left: 0; list-style: none; margin: 0 0 18px; }
+    .modal-features li { position: relative; padding-left: 24px; margin-bottom: 8px; opacity: 0; transform: translateY(6px); animation: featureIn .45s ease forwards; }
+    .modal-features li:before { content: "✓"; position: absolute; left: 0; color: var(--primary-color, #2e7d32); font-weight: 700; }
+    @keyframes featureIn { to { opacity: 1; transform: translateY(0); } }
+
+    .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 26px; margin-bottom: 18px; }
+    .modal-grid .label { font-weight: 800; color: var(--primary-color, #2e7d32); margin-bottom: 4px; font-size: .96rem; }
+    .modal-grid div > div:last-child { color: var(--text-dark, #333); }
+
+    .modal-footer { display: flex; justify-content: space-between; align-items: center; padding: 16px 28px; border-top: 1px solid rgba(0,0,0,0.06); flex-wrap: wrap; gap: 12px; background: linear-gradient(0deg, rgba(249,253,250,0.9), rgba(255,255,255,0.6)); }
+    .modal-price { font-weight: 900; color: var(--primary-color, #2e7d32); font-size: 1.3rem; }
+    .modal-actions .add-to-cart-btn { width: auto; margin: 0; padding: 10px 28px; }
+
+    /* Stagger animation for features */
+    .modal-features li:nth-child(1){ animation-delay: .06s; }
+    .modal-features li:nth-child(2){ animation-delay: .12s; }
+    .modal-features li:nth-child(3){ animation-delay: .18s; }
+    .modal-features li:nth-child(4){ animation-delay: .24s; }
+    .modal-features li:nth-child(5){ animation-delay: .30s; }
+    .modal-features li:nth-child(6){ animation-delay: .36s; }
+
+    @media (max-width: 992px) { .modal-body { grid-template-columns: 1fr; } .modal-details-pane { border-radius: 0; } .modal-image { height: 260px; } }
+
+    /* Key-value rows with icons and animations */
+    .kv-row { display: grid; grid-template-columns: 26px auto; column-gap: 10px; align-items: start; opacity: 0; transform: translateY(6px); animation: kvIn .45s ease forwards; }
+    .kv-icon { width: 26px; height: 26px; border-radius: 6px; display: grid; place-items: center; background: rgba(46,125,50,0.08); color: var(--primary-color, #2e7d32); }
+    .kv-label { font-weight: 800; color: var(--primary-color, #2e7d32); margin-bottom: 2px; }
+    .kv-value { color: var(--text-dark, #333); }
+    @keyframes kvIn { to { opacity: 1; transform: translateY(0); } }
+    .modal-grid > div:nth-child(1) .kv-row{ animation-delay: .05s; }
+    .modal-grid > div:nth-child(2) .kv-row{ animation-delay: .10s; }
+    .modal-grid > div:nth-child(3) .kv-row{ animation-delay: .15s; }
+    .modal-grid > div:nth-child(4) .kv-row{ animation-delay: .20s; }
+    .modal-grid > div:nth-child(5) .kv-row{ animation-delay: .25s; }
+    .modal-grid > div:nth-child(6) .kv-row{ animation-delay: .30s; }
+    .modal-grid > div:nth-child(7) .kv-row{ animation-delay: .35s; }
+    .modal-grid > div:nth-child(8) .kv-row{ animation-delay: .40s; }
+
+    /* New: graceful modal exit, floating image, and ripple */
+    .product-modal.closing { animation: modalBackdropOut 0.25s ease-in forwards; }
+    @keyframes modalBackdropOut { from { opacity: 1; } to { opacity: 0; } }
+    .product-modal.closing .modal-content { animation: modalOut 320ms cubic-bezier(.2,.8,.2,1) forwards; }
+    @keyframes modalOut { to { opacity: 0; transform: translateY(22px) scale(0.985); } }
+
+    /* Floating image subtle motion */
+    .modal-image { animation: floatY 6s ease-in-out infinite; }
+    @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+    /* Parallax tilt container */
+    .modal-figure { perspective: 800px; }
+    .modal-figure .modal-image { will-change: transform; transition: transform .2s ease; }
+
+    /* Button ripple effect */
+    .ripple-container { position: relative; overflow: hidden; }
+    .ripple { position: absolute; border-radius: 999px; transform: scale(0); background: rgba(255,255,255,0.45); animation: rippleAnim 600ms ease-out forwards; pointer-events: none; }
+    @keyframes rippleAnim { to { transform: scale(12); opacity: 0; } }
+
+    /* Apply ripple to primary buttons */
+    .add-to-cart-btn, .details-btn { position: relative; overflow: hidden; }
+
+    /* Animated bubbles behind product image */
+    .modal-figure { position: relative; overflow: hidden; }
+    .bubble-layer { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .bubble {
+      position: absolute;
+      bottom: -60px;
+      border-radius: 50%;
+      opacity: 0;
+      background: radial-gradient(closest-side, rgba(46,125,50,0.25), rgba(46,125,50,0.12) 60%, rgba(46,125,50,0.0));
+      filter: blur(0.2px);
+      will-change: transform, opacity;
+      animation-name: bubbleUp, bubblePulse;
+      animation-timing-function: ease-out, ease-in-out;
+      animation-iteration-count: infinite, infinite;
+    }
+    @keyframes bubbleUp {
+      0% { transform: translate3d(0, 0, 0) scale(0.85); opacity: 0; }
+      8% { opacity: 0.85; }
+      100% { transform: translate3d(var(--driftX, 0px), -120%, 0) scale(1); opacity: 0; }
+    }
+    @keyframes bubblePulse {
+      0%,100% { filter: blur(0.2px); }
+      50% { filter: blur(0.6px); }
+    }
+
+    /* Attractive modal typography */
+    .modal-title {
+      font-family: var(--display-font);
+      font-weight: 800;
+      letter-spacing: .3px;
+      font-size: 2.1rem;
+      line-height: 1.15;
+    }
+    .modal-description,
+    .modal-features li,
+    .kv-value,
+    .modal-price {
+      font-family: var(--ui-font);
+    }
+    .modal-description { font-size: 1.02rem; color: var(--text-light, #666); }
+    .modal-features li { font-size: .98rem; }
+    .kv-label { font-family: var(--ui-font); letter-spacing: .2px; }
+    .modal-badge { font-family: var(--ui-font); font-weight: 600; }
+    .modal-price { font-weight: 900; letter-spacing: .2px; }
+    .add-to-cart-btn { font-family: var(--ui-font); font-weight: 600; letter-spacing: .2px; }
+  </style>
+</head>
+<body>
+  <!-- Scroll to top button -->
+  <div class="scroll-to-top">
+    <i class="fas fa-chevron-up"></i>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container position-relative">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo.jpg" alt="Kanda Seeds Logo">
+        Atharv<span style="color: #d17910;"> Agro Seeds</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+              data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link active" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="nav-indicator" id="navIndicator"></div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="page-header-content">
+      <div class="container">
+        <h1 class="display-4 animate__animated animate__fadeInDown">Our Premium Products</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb animate__animated animate__fadeIn animate__delay-1s">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Products</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products-section">
+    <div class="container">
+      <h2 class="section-title animate__animated animate__fadeIn">Quality Onion Seeds</h2>
+      
+      <!-- Category Filter -->
+      <div class="category-filter animate__animated animate__fadeIn animate__delay-1s">
+        <button class="filter-btn active" data-filter="all">All Products</button>
+        <button class="filter-btn" data-filter="red">Red Onion Seeds</button>
+        <button class="filter-btn" data-filter="yellow">Yellow Onion Seeds</button>
+        <button class="filter-btn" data-filter="white">White Onion Seeds</button>
+        <button class="filter-btn" data-filter="hybrid">Hybrid Seeds</button>
+      </div>
+      
+      <!-- Products Grid -->
+      <div class="row" id="products-container">
+        <!-- Product 1 - Red Onion -->
+        <div class="col-md-6 col-lg-4 mb-4" data-category="red">
+          <div class="product-card">
+            <div class="product-img-container">
+              <img src="https://tiimg.tistatic.com/fp/2/008/947/dark-red-onion-seeds-245.jpg" alt="Red Onion Seeds">
+            </div>
+            <div class="card-body">
+              <span class="product-category">Red Onion Seeds</span>
+              <h3 class="card-title">Red Prime</h3>
+              <p class="card-text">High-yield variety, suitable for all soil types. These seeds produce deep red bulbs with excellent storage quality.</p>
+              
+              <ul class="product-features">
+                <li>95% Germination Rate</li>
+                <li>Disease Resistant</li>
+                <li>120-130 Days Maturity</li>
+              </ul>
+              
+              <button class="details-btn" data-target="details-1">View Details</button>
+              
+              <div class="product-details" id="details-1">
+                <div class="details-content">
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-leaf"></i></div>
+                    <div>
+                      <div class="detail-label">Best For</div>
+                      <p>Commercial farming, storage, and export</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-apple-alt"></i></div>
+                    <div>
+                      <div class="detail-label">Bulb Characteristics</div>
+                      <p>Deep red color, globular shape, firm texture</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <div>
+                      <div class="detail-label">Sowing Season</div>
+                      <p>Rabi season (October-November)</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-chart-line"></i></div>
+                    <div>
+                      <div class="detail-label">Yield Potential</div>
+                      <p>25-30 tons per hectare</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-box"></i></div>
+                    <div>
+                      <div class="detail-label">Package Size</div>
+                      <p>100g, 250g, 500g, 1kg</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-tag"></i></div>
+                    <div>
+                      <div class="detail-label">Price</div>
+                      <p>₹450 per 100g</p>
+                    </div>
+                  </div>
+                  <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 2 - Yellow Onion -->
+        <div class="col-md-6 col-lg-4 mb-4" data-category="yellow">
+          <div class="product-card">
+            <div class="product-img-container">
+              <img src="https://tiimg.tistatic.com/fp/2/008/947/dark-red-onion-seeds-245.jpg" alt="Yellow Onion Seeds">
+            </div>
+            <div class="card-body">
+              <span class="product-category">Yellow Onion Seeds</span>
+              <h3 class="card-title">Golden Harvest</h3>
+              <p class="card-text">Known for strong flavor and excellent storage ability. Yellow onions are widely used in cooking and commercial farming.</p>
+              
+              <ul class="product-features">
+                <li>90% Germination Rate</li>
+                <li>Excellent Storage Life</li>
+                <li>100-110 Days Maturity</li>
+              </ul>
+              
+              <button class="details-btn" data-target="details-2">View Details</button>
+              
+              <div class="product-details" id="details-2">
+                <div class="details-content">
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-leaf"></i></div>
+                    <div>
+                      <div class="detail-label">Best For</div>
+                      <p>Culinary use, processing, commercial farming</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-apple-alt"></i></div>
+                    <div>
+                      <div class="detail-label">Bulb Characteristics</div>
+                      <p>Golden yellow color, firm, strong flavor</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <div>
+                      <div class="detail-label">Sowing Season</div>
+                      <p>Rabi season (Oct-Nov)</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-chart-line"></i></div>
+                    <div>
+                      <div class="detail-label">Yield Potential</div>
+                      <p>25-30 tons per hectare</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-box"></i></div>
+                    <div>
+                      <div class="detail-label">Package Size</div>
+                      <p>100g, 250g, 500g</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-tag"></i></div>
+                    <div>
+                      <div class="detail-label">Price</div>
+                      <p>₹420 per 100g</p>
+                    </div>
+                  </div>
+                  <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 3 - Hybrid -->
+        <div class="col-md-6 col-lg-4 mb-4" data-category="hybrid">
+          <div class="product-card">
+            <div class="product-img-container">
+              <img src="https://tiimg.tistatic.com/fp/2/008/947/dark-red-onion-seeds-245.jpg" alt="Hybrid Onion Seeds">
+            </div>
+            <div class="card-body">
+              <span class="product-category">Hybrid Seeds</span>
+              <h3 class="card-title">Hybrid Gold</h3>
+              <p class="card-text">Best choice for commercial farming with disease resistance. These hybrids offer uniform size and higher yields.</p>
+              
+              <ul class="product-features">
+                <li>98% Germination Rate</li>
+                <li>High Disease Resistance</li>
+                <li>100-110 Days Maturity</li>
+              </ul>
+              
+              <button class="details-btn" data-target="details-3">View Details</button>
+              
+              <div class="product-details" id="details-3">
+                <div class="details-content">
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-leaf"></i></div>
+                    <div>
+                      <div class="detail-label">Best For</div>
+                      <p>Commercial farming, processing, and high-density planting</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-apple-alt"></i></div>
+                    <div>
+                      <div class="detail-label">Bulb Characteristics</div>
+                      <p>Golden brown color, uniform size, firm texture</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <div>
+                      <div class="detail-label">Sowing Season</div>
+                      <p>Both Rabi and Kharif seasons</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-chart-line"></i></div>
+                    <div>
+                      <div class="detail-label">Yield Potential</div>
+                      <p>30-35 tons per hectare</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-box"></i></div>
+                    <div>
+                      <div class="detail-label">Package Size</div>
+                      <p>50g, 100g, 250g</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-tag"></i></div>
+                    <div>
+                      <div class="detail-label">Price</div>
+                      <p>₹550 per 100g</p>
+                    </div>
+                  </div>
+                  <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 4 - Red Onion -->
+        <div class="col-md-6 col-lg-4 mb-4" data-category="red">
+          <div class="product-card">
+            <div class="product-img-container">
+              <img src="https://tiimg.tistatic.com/fp/2/008/947/dark-red-onion-seeds-245.jpg" alt="Red Onion Seeds">
+            </div>
+            <div class="card-body">
+              <span class="product-category">Red Onion Seeds</span>
+              <h3 class="card-title">Red Diamond</h3>
+              <p class="card-text">Early maturing variety with deep red color and excellent pungency. Ideal for domestic markets.</p>
+              
+              <ul class="product-features">
+                <li>90% Germination Rate</li>
+                <li>Early Maturing</li>
+                <li>95-105 Days Maturity</li>
+              </ul>
+              
+              <button class="details-btn" data-target="details-4">View Details</button>
+              
+              <div class="product-details" id="details-4">
+                <div class="details-content">
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-leaf"></i></div>
+                    <div>
+                      <div class="detail-label">Best For</div>
+                      <p>Domestic markets, early season harvest</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-apple-alt"></i></div>
+                    <div>
+                      <div class="detail-label">Bulb Characteristics</div>
+                      <p>Deep red color, medium size, good pungency</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <div>
+                      <div class="detail-label">Sowing Season</div>
+                      <p>Late Kharif season (July-August)</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-chart-line"></i></div>
+                    <div>
+                      <div class="detail-label">Yield Potential</div>
+                      <p>20-25 tons per hectare</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-box"></i></div>
+                    <div>
+                      <div class="detail-label">Package Size</div>
+                      <p>100g, 250g, 500g</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-tag"></i></div>
+                    <div>
+                      <div class="detail-label">Price</div>
+                      <p>₹400 per 100g</p>
+                    </div>
+                  </div>
+                  <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 5 - White Onion -->
+        <div class="col-md-6 col-lg-4 mb-4" data-category="white">
+          <div class="product-card">
+            <div class="product-img-container">
+              <img src="https://tiimg.tistatic.com/fp/2/008/947/dark-red-onion-seeds-245.jpg">
+            </div>
+            <div class="card-body">
+              <span class="product-category">White Onion Seeds</span>
+              <h3 class="card-title">Crystal White</h3>
+              <p class="card-text">High-yielding white onion with excellent storage qualities and mild flavor. Perfect for export markets.</p>
+              
+              <ul class="product-features">
+                <li>94% Germination Rate</li>
+                <li>Long Storage Life</li>
+                <li>125-135 Days Maturity</li>
+              </ul>
+              
+              <button class="details-btn" data-target="details-5">View Details</button>
+              
+              <div class="product-details" id="details-5">
+                <div class="details-content">
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-leaf"></i></div>
+                    <div>
+                      <div class="detail-label">Best For</div>
+                      <p>Export markets, long-term storage</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-apple-alt"></i></div>
+                    <div>
+                      <div class="detail-label">Bulb Characteristics</div>
+                      <p>Bright white color, large size, mild flavor</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <div>
+                      <div class="detail-label">Sowing Season</div>
+                      <p>Rabi season (October-November)</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-chart-line"></i></div>
+                    <div>
+                      <div class="detail-label">Yield Potential</div>
+                      <p>28-32 tons per hectare</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-box"></i></div>
+                    <div>
+                      <div class="detail-label">Package Size</div>
+                      <p>250g, 500g, 1kg</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-tag"></i></div>
+                    <div>
+                      <div class="detail-label">Price</div>
+                      <p>₹480 per 100g</p>
+                    </div>
+                  </div>
+                  <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 6 - Hybrid -->
+        <div class="col-md-6 col-lg-4 mb-4" data-category="hybrid">
+          <div class="product-card">
+            <div class="product-img-container">
+              <img src="https://tiimg.tistatic.com/fp/2/008/947/dark-red-onion-seeds-245.jpg" alt="Hybrid Onion Seeds">
+            </div>
+            <div class="card-body">
+              <span class="product-category">Hybrid Seeds</span>
+              <h3 class="card-title">Hybrid Supreme</h3>
+              <p class="card-text">Premium hybrid with exceptional uniformity and high yield potential. Resistant to major diseases.</p>
+              
+              <ul class="product-features">
+                <li>97% Germination Rate</li>
+                <li>Exceptional Uniformity</li>
+                <li>105-115 Days Maturity</li>
+              </ul>
+              
+              <button class="details-btn" data-target="details-6">View Details</button>
+              
+              <div class="product-details" id="details-6">
+                <div class="details-content">
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-leaf"></i></div>
+                    <div>
+                      <div class="detail-label">Best For</div>
+                      <p>Premium markets, high-value production</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-apple-alt"></i></div>
+                    <div>
+                      <div class="detail-label">Bulb Characteristics</div>
+                      <p>Uniform size, golden brown color, excellent firmness</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <div>
+                      <div class="detail-label">Sowing Season</div>
+                      <p>Both Rabi and Kharif seasons</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-chart-line"></i></div>
+                    <div>
+                      <div class="detail-label">Yield Potential</div>
+                      <p>32-38 tons per hectare</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-box"></i></div>
+                    <div>
+                      <div class="detail-label">Package Size</div>
+                      <p>50g, 100g, 250g</p>
+                    </div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-tag"></i></div>
+                    <div>
+                      <div class="detail-label">Price</div>
+                      <p>₹600 per 100g</p>
+                    </div>
+                  </div>
+                  <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dynamic Product Modal -->
+  <div class="product-modal" id="productModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" tabindex="-1">
+        <div class="modal-header">
+          <h3 class="modal-title" id="modalTitle">Product</h3>
+          <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-figure">
+            <img id="modalImage" class="modal-image" alt="" />
+          </div>
+          <div class="modal-details-pane">
+            <div class="modal-meta"><span id="modalCategory" class="modal-badge"></span></div>
+            <p id="modalDescription" class="modal-description"></p>
+            <ul id="modalFeatures" class="modal-features"></ul>
+            <div class="modal-grid">
+              <div>
+                <div class="kv-row">
+                  <div class="kv-icon"><i class="fas fa-calendar-alt"></i></div>
+                  <div>
+                    <div class="kv-label">Sowing Time</div>
+                    <div class="kv-value" id="modalSeason"></div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="kv-row">
+                  <div class="kv-icon"><i class="fas fa-palette"></i></div>
+                  <div>
+                    <div class="kv-label">Colour</div>
+                    <div class="kv-value" id="modalColour"></div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="kv-row">
+                  <div class="kv-icon"><i class="fas fa-clock"></i></div>
+                  <div>
+                    <div class="kv-label">Maturity</div>
+                    <div class="kv-value" id="modalMaturity"></div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="kv-row">
+                  <div class="kv-icon"><i class="fas fa-warehouse"></i></div>
+                  <div>
+                    <div class="kv-label">Storage Capacity</div>
+                    <div class="kv-value" id="modalStorage"></div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="kv-row">
+                  <div class="kv-icon"><i class="fas fa-layer-group"></i></div>
+                  <div>
+                    <div class="kv-label">Skin</div>
+                    <div class="kv-value" id="modalSkin"></div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="kv-row">
+                  <div class="kv-icon"><i class="fas fa-star"></i></div>
+                  <div>
+                    <div class="kv-label">Additional Features</div>
+                    <div class="kv-value" id="modalBestFor"></div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="kv-row">
+                  <div class="kv-icon"><i class="fas fa-chart-line"></i></div>
+                  <div>
+                    <div class="kv-label">Yield</div>
+                    <div class="kv-value" id="modalYield"></div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="kv-row">
+                  <div class="kv-icon"><i class="fas fa-box-open"></i></div>
+                  <div>
+                    <div class="kv-label">Package Size</div>
+                    <div class="kv-value" id="modalPackage"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="modal-price" id="modalPrice"><i class="fas fa-tag me-1"></i></div>
+          <div class="modal-actions">
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <h5>Athrav Agro Seeds</h5>
+          <p>Providing high-quality onion seeds to farmers for over two decades. Our mission is to support agriculture with reliable, high-yielding seed varieties.</p>
+          <div class="social-icons mt-3">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+          <h5>Contact Us</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-map-marker-alt me-2"></i> 123 Farm Road, Agricultural Zone</li>
+            <li><i class="fas fa-phone me-2"></i> +91 98765 43210</li>
+            <li><i class="fas fa-envelope me-2"></i> info@athravseeds.com</li>
+          </ul>
+        </div>
+      </div>
+      
+      <hr class="mt-4 mb-4" style="border-color: rgba(255,255,255,0.1);">
+      
+      <div class="text-center">
+        <p>&copy; 2025 Atharv Biotech Seed Company. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      const scrollToTop = document.querySelector('.scroll-to-top');
+      
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+        scrollToTop.classList.add('active');
+      } else {
+        navbar.classList.remove('scrolled');
+        scrollToTop.classList.remove('active');
+      }
+    });
+    
+    // Scroll to top functionality
+    document.querySelector('.scroll-to-top').addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Enhanced navbar indicator & active link handling
+    function initNavbarIndicator() {
+      const nav = document.querySelector('.navbar');
+      const indicator = document.getElementById('navIndicator');
+      const links = Array.from(document.querySelectorAll('.navbar .nav-link'));
+      if (!nav || !indicator || links.length === 0) return;
+
+      const path = location.pathname.split('/').pop() || 'index.html';
+      let activeLink = links.find(l => l.getAttribute('href') === path) || links.find(l=>l.classList.contains('active')) || links[0];
+      links.forEach(l => l.classList.toggle('active', l === activeLink));
+
+      function moveIndicator(target) {
+        const linkRect = target.getBoundingClientRect();
+        const containerRect = nav.querySelector('.container').getBoundingClientRect();
+        const left = linkRect.left - containerRect.left;
+        indicator.style.width = linkRect.width + 'px';
+        indicator.style.transform = `translateX(${left}px)`;
+      }
+      moveIndicator(activeLink);
+
+      links.forEach(link => {
+        link.addEventListener('mouseenter', () => moveIndicator(link));
+        link.addEventListener('focus', () => moveIndicator(link));
+        link.addEventListener('mouseleave', () => moveIndicator(activeLink));
+        link.addEventListener('blur', () => moveIndicator(activeLink));
+        link.addEventListener('click', () => { activeLink = link; links.forEach(l => l.classList.toggle('active', l===activeLink)); });
+      });
+      window.addEventListener('resize', () => moveIndicator(activeLink));
+    }
+
+    // Functionality for expandable details
+    document.querySelectorAll('.details-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        const modal = document.getElementById('productModal');
+        if (!modal) return;
+        const card = this.closest('.product-card');
+        const img = card.querySelector('.product-img-container img');
+        const title = card.querySelector('.card-title')?.textContent?.trim() || '';
+        const category = card.querySelector('.product-category')?.textContent?.trim() || '';
+        const description = card.querySelector('.card-text')?.textContent?.trim() || '';
+        const features = Array.from(card.querySelectorAll('.product-features li')).map(li => li.textContent.trim());
+        const detailsId = this.getAttribute('data-target');
+        const details = document.getElementById(detailsId);
+        const detailItems = details ? details.querySelectorAll('.detail-item') : [];
+        const bestFor = detailItems[0]?.querySelector('p')?.textContent?.trim() || '';
+        const bulb = detailItems[1]?.querySelector('p')?.textContent?.trim() || '';
+        const season = detailItems[2]?.querySelector('p')?.textContent?.trim() || '';
+        const yieldP = detailItems[3]?.querySelector('p')?.textContent?.trim() || '';
+        const pack = detailItems[4]?.querySelector('p')?.textContent?.trim() || '';
+        const price = detailItems[5]?.querySelector('p')?.textContent?.trim() || '';
+
+        // Populate modal
+        const modalContent = modal.querySelector('.modal-content');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalImage = document.getElementById('modalImage');
+        const modalCategory = document.getElementById('modalCategory');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalFeatures = document.getElementById('modalFeatures');
+        const modalBestFor = document.getElementById('modalBestFor');
+        const modalSeason = document.getElementById('modalSeason');
+        const modalYield = document.getElementById('modalYield');
+        const modalPackage = document.getElementById('modalPackage');
+        const modalPrice = document.getElementById('modalPrice');
+        const modalColour = document.getElementById('modalColour');
+        const modalMaturity = document.getElementById('modalMaturity');
+        const modalStorage = document.getElementById('modalStorage');
+        const modalSkin = document.getElementById('modalSkin');
+
+        // Attempt to derive Colour, Maturity, Storage, Skin from card where possible
+        const featuresText = features.join(' | ').toLowerCase();
+
+        modalTitle.textContent = title;
+        modalImage.src = img?.src || '';
+        modalImage.alt = title ? `${title} image` : 'Product image';
+        modalCategory.textContent = category;
+        modalDescription.textContent = description;
+        modalFeatures.innerHTML = '';
+        features.forEach(text => { const li = document.createElement('li'); li.textContent = text; modalFeatures.appendChild(li); });
+        modalBestFor.textContent = bestFor || '—';
+        modalSeason.textContent = season || '—';
+        modalYield.textContent = yieldP || '—';
+        modalPackage.textContent = pack || '—';
+        modalPrice.textContent = price || '';
+        // Map remaining fields when present in details or features
+        modalColour.textContent = bulb.includes('color') ? bulb : '—';
+        modalMaturity.textContent = features.find(f=>/day/i.test(f)) || '—';
+        modalStorage.textContent = featuresText.includes('storage') ? (features.find(f=>/storage/i.test(f)) || '—') : '—';
+        modalSkin.textContent = bulb.toLowerCase().includes('skin') ? bulb : '—';
+
+        // Show modal
+        modal.classList.remove('closing');
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+        modalContent.setAttribute('tabindex', '-1');
+        modalContent.focus();
+
+        // Create animated bubbles behind the image
+        const figure = modal.querySelector('.modal-figure');
+        if (figure) {
+          let layer = figure.querySelector('.bubble-layer');
+          if (!layer) {
+            layer = document.createElement('div');
+            layer.className = 'bubble-layer';
+            figure.prepend(layer);
+          } else {
+            layer.innerHTML = '';
+          }
+          const bubbleCount = 12;
+          for (let i = 0; i < bubbleCount; i++) {
+            const b = document.createElement('span');
+            b.className = 'bubble';
+            const size = 12 + Math.random() * 26; // 12 - 38px
+            const left = Math.random() * 92 + 4; // 4% - 96%
+            const duration = 3200 + Math.random() * 3200; // 3.2s - 6.4s
+            const delay = Math.random() * 1400; // 0 - 1.4s
+            const drift = (Math.random() - 0.5) * 60; // -30px .. 30px
+            b.style.width = `${size}px`;
+            b.style.height = `${size}px`;
+            b.style.left = `${left}%`;
+            b.style.setProperty('--driftX', `${drift}px`);
+            b.style.animationDuration = `${duration}ms, ${1200 + Math.random()*900}ms`;
+            b.style.animationDelay = `${delay}ms, ${delay/2}ms`;
+            layer.appendChild(b);
+          }
+        }
+      });
+    });
+
+    // Modal close & a11y
+    (function(){
+      const modal = document.getElementById('productModal');
+      const closeBtn = document.getElementById('modalClose');
+      function closeModal() {
+        // Animate out gracefully
+        if (!modal.classList.contains('active')) return;
+        modal.classList.add('closing');
+        const onBackdropAnimEnd = (e) => {
+          if (e.target !== modal) return;
+          modal.classList.remove('active', 'closing');
+          modal.setAttribute('aria-hidden', 'true');
+          document.body.classList.remove('modal-open');
+          // Cleanup bubbles
+          const figure = modal.querySelector('.modal-figure');
+          const layer = figure ? figure.querySelector('.bubble-layer') : null;
+          if (layer) layer.innerHTML = '';
+          modal.removeEventListener('animationend', onBackdropAnimEnd);
+          const firstBtn = document.querySelector('.details-btn');
+          if (firstBtn) setTimeout(()=> firstBtn.focus(), 0);
+        };
+        modal.addEventListener('animationend', onBackdropAnimEnd);
+      }
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
+    })();
+
+    // Product filtering functionality
+    document.querySelectorAll('.filter-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        // Remove active class from all buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        
+        // Add active class to clicked button
+        this.classList.add('active');
+        
+        const filter = this.getAttribute('data-filter');
+        const products = document.querySelectorAll('.product-card');
+        
+        products.forEach(product => {
+          const productCategory = product.closest('[data-category]').getAttribute('data-category');
+          
+          if (filter === 'all' || filter === productCategory) {
+            product.closest('.col-md-6').style.display = 'block';
+            
+            // Add animation for visible products
+            setTimeout(() => {
+              product.classList.add('visible');
+            }, 100);
+          } else {
+            product.closest('.col-md-6').style.display = 'none';
+            product.classList.remove('visible');
+          }
+        });
+      });
+    });
+    
+    // Animate product cards on scroll
+    function animateProducts() {
+      const productCards = document.querySelectorAll('.product-card');
+      
+      productCards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (cardTop < windowHeight * 0.8 && card.closest('.col-md-6').style.display !== 'none') {
+          card.classList.add('visible');
+        }
+      });
+    }
+    
+    // Intersection Observer for animations on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains('section-title')) {
+            entry.target.classList.add('animate__animated', 'animate__fadeIn');
+          }
+        }
+      });
+    }, observerOptions);
+    
+    // Animate products on scroll
+    window.addEventListener('scroll', animateProducts);
+
+    // Observe elements for animation and initialize accessibility on ready
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initial product animation
+      animateProducts();
+
+      // Products list semantics
+      const productsContainer = document.getElementById('products-container');
+      if (productsContainer) {
+        productsContainer.setAttribute('role', 'list');
+      }
+      document.querySelectorAll('#products-container .col-md-6').forEach(col => {
+        col.setAttribute('role', 'listitem');
+      });
+
+      // Button/details ARIA wiring and image lazy-load
+      document.querySelectorAll('#products-container .product-card').forEach((card, index) => {
+        const heading = card.querySelector('.card-title');
+        if (heading && !heading.id) heading.id = `product-title-${index+1}`;
+        const btn = card.querySelector('.details-btn');
+        const detailsId = btn ? btn.getAttribute('data-target') : null;
+        const details = detailsId ? document.getElementById(detailsId) : null;
+        if (btn && details) {
+          btn.setAttribute('aria-expanded', 'false');
+          btn.setAttribute('aria-controls', details.id);
+          details.setAttribute('role', 'region');
+          if (heading) details.setAttribute('aria-labelledby', heading.id);
+          details.setAttribute('aria-hidden', 'true');
+        }
+      });
+      document.querySelectorAll('#products-container img').forEach(img => {
+        img.setAttribute('loading', 'lazy');
+        img.setAttribute('decoding', 'async');
+      });
+
+      // Observe sections for title animation
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => { observer.observe(section); });
+
+      // Initialize nav indicator
+      if (typeof initNavbarIndicator === 'function') {
+        initNavbarIndicator();
+      }
+    });
+
+    // Micro-interactions: parallax tilt and ripple effects
+    (function(){
+      const modal = document.getElementById('productModal');
+      const figure = modal ? modal.querySelector('.modal-figure') : null;
+      const image = modal ? modal.querySelector('.modal-image') : null;
+      if (figure && image) {
+        const handleMove = (e) => {
+          const rect = figure.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width; // 0..1
+          const y = (e.clientY - rect.top) / rect.height; // 0..1
+          const rotateY = (x - 0.5) * 8; // -4..4 deg
+          const rotateX = (0.5 - y) * 8; // -4..4 deg
+          image.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        };
+        const reset = () => { image.style.transform = ''; };
+        figure.addEventListener('mousemove', handleMove);
+        figure.addEventListener('mouseleave', reset);
+      }
+
+      // Ripple effect (delegated)
+      function attachRipple(container) {
+        container.addEventListener('click', function(e){
+          const target = e.target.closest('.add-to-cart-btn, .details-btn');
+          if (!target) return;
+          const rect = target.getBoundingClientRect();
+          const ripple = document.createElement('span');
+          ripple.className = 'ripple';
+          const size = Math.max(rect.width, rect.height);
+          ripple.style.width = ripple.style.height = size + 'px';
+          ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+          ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+          target.appendChild(ripple);
+          ripple.addEventListener('animationend', () => ripple.remove());
+        });
+      }
+      attachRipple(document);
+    })();
+  </script>
+</body>
+</html>
